@@ -4,7 +4,8 @@
   "description": "test for Slingr",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon app.js"
+    "start": "node ./src/app.js",
+    "test": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
