@@ -1,5 +1,6 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const routes = require('../routes/bst-route'); // import the routes
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -7,6 +8,9 @@ const port = process.env.PORT || 3000;
 // Convierte una petición recibida (POST-GET...) a objeto JSON
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+//usa JSON
+app.use(express.json());
+app.use('/', routes); //to use the routes
 
 app.get('/', function(req, res){
 	res.status(200).send({
