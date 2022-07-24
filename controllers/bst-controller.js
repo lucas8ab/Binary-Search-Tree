@@ -1,12 +1,17 @@
 /* eslint-disable no-unused-vars */
 // newBST function for post BST route
 const newBST = (req, res) => {
-//   res.json({ message: "POST new BST " + req.query.name + "..." }); // dummy function for now
-// const params = req.body.name ? req.body : req.query;
-//   res.send(params);
-const bstArray = req.body;
-console.log('salida:', req.body);
-res.send(bstArray);
+  // const params = req.body.name ? req.body : req.query;
+  const bstArray = req.body.array;
+
+  for (let num of bstArray) {
+    if (!Number.isInteger(num)) {
+      res.status(400).json({ error: "array must be Integers " });
+      return;
+    }
+  }
+  console.log("salida:", bstArray);
+  res.send(bstArray);
 };
 
 //GET '/tea/:name'
