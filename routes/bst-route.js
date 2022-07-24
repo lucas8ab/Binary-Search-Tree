@@ -7,7 +7,7 @@ const bstController = require("../controllers/bst-controller");
 
 // 3. route and callback
 //create
-bstRouter.post("/bst", bstController.newBST);
+bstRouter.post("/bst/new", bstController.createBST);
 
 //get one
 bstRouter.get("/bst/:id", bstController.getOneBST);

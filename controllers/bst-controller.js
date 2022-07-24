@@ -1,31 +1,52 @@
 /* eslint-disable no-unused-vars */
-// newBST function for post BST route
-const newBST = (req, res) => {
+const BST = require("../src/bstClass");
+
+// chequea si el array es de integers
+const checkArray = (array) => {
   // const params = req.body.name ? req.body : req.query;
-  const bstArray = req.body.array;
+  const bstArray = array;
 
   for (let num of bstArray) {
     if (!Number.isInteger(num)) {
-      res.status(400).json({ error: "array must be Integers " });
-      return;
+      return false;
     }
   }
   console.log("salida:", bstArray);
-  res.send(bstArray);
+  return bstArray;
 };
 
-//GET '/tea/:name'
-const getOneBST = (req, res, next) => {
+//GET '/bst/:name'
+const createBST = (req, res) => {
+  const bstArray = checkArray(req.body.array);
+  // console.log("--:", bstArray);
+  const bst = new BST();
+  let arbol = [];
+
+  if (bstArray) {
+    for (let node of bstArray) {
+      bst.add(node);
+      arbol.push(node);
+    }
+    console.log(bst.findMin());
+    console.log(bst.findMax());
+    let size = arbol.length;
+
+    res.send({ bst: { arbol, size } });
+  } else res.status(400).json({ error: "array must be Integers " });
+};
+
+//GET '/bst/:name'
+const getOneBST = (req, res) => {
   res.json({ message: "GET 1 BST" });
 };
 
-//GET '/tea'
+//GET '/bst'
 const getAllBST = (req, res, next) => {
   res.json({ message: "GET all BST" });
 };
 
 module.exports = {
-  newBST,
   getAllBST,
   getOneBST,
+  createBST,
 };
