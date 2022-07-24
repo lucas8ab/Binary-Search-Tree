@@ -1,10 +1,19 @@
-const express = require('express'); //import express
+const express = require("express"); //import express
 
 // 1.
-const bstRouter  = express.Router(); 
+const bstRouter = express.Router();
 // 2.
-const bstController = require('../controllers/bst-controller'); 
+const bstController = require("../controllers/bst-controller");
+
 // 3. route and callback
-bstRouter.post('/bst', bstController.newBST); 
-// 4. 
+//create
+bstRouter.post("/bst", bstController.newBST);
+
+//get one
+bstRouter.get("/bst/:id", bstController.getOneBST);
+
+//get all
+bstRouter.get("/bst", bstController.getAllBST);
+
+// 4.
 module.exports = bstRouter; // export to use in server.js
