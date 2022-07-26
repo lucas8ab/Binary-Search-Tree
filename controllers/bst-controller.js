@@ -3,36 +3,40 @@ const BST = require("../src/bstClass");
 
 // chequea si el array es de integers
 const checkArray = (array) => {
-  // const params = req.body.name ? req.body : req.query;
-  const bstArray = array;
-
-  for (let num of bstArray) {
+  for (let num of array) {
     if (!Number.isInteger(num)) {
       return false;
     }
   }
-  console.log("salida:", bstArray);
-  return bstArray;
+  console.log("Array of integers:", array);
+  return array;
 };
 
 //GET '/bst/:name'
 const createBST = (req, res) => {
   const bstArray = checkArray(req.body.array);
-  // console.log("--:", bstArray);
   const bst = new BST();
-  let arbol = [];
+  let array = [];
 
   if (bstArray) {
     for (let node of bstArray) {
       bst.add(node);
-      arbol.push(node);
+      array.push(node);
     }
     console.log(bst.findMin());
     console.log(bst.findMax());
-    let size = arbol.length;
+    let size = array.length;
+    console.log(bst.find(82));
+    console.log(bst.isPresent(82));
+    console.log(bst.findMinHeight());
+    console.log(bst.findMaxHeight());
+    console.log(bst.isBalanced());
 
-    res.send({ bst: { arbol, size } });
-  } else res.status(400).json({ error: "array must be Integers " });
+    res.send({ bst: { array, size, bst } });
+  } else
+    res
+      .status(400)
+      .json({ error: "All elements in the array must be integers." });
 };
 
 //GET '/bst/:name'
