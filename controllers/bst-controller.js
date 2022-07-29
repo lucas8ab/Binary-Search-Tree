@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const BST = require("../src/bstClass");
 
-// chequea si el array es de integers
+// chequea si el array es solo de integers
 const checkArray = (array) => {
   for (let num of array) {
     if (!Number.isInteger(num)) {
@@ -12,7 +12,7 @@ const checkArray = (array) => {
   return array;
 };
 
-//GET '/bst/:name'
+//POST '/bst/:name'
 const createBST = (req, res) => {
   const bstArray = checkArray(req.body.array);
   const bst = new BST();
@@ -26,21 +26,23 @@ const createBST = (req, res) => {
     console.log(bst.findMin());
     console.log(bst.findMax());
     let size = array.length;
-    console.log(bst.find(82));
-    console.log(bst.isPresent(82));
-    console.log(bst.findMinHeight());
-    console.log(bst.findMaxHeight());
-    console.log(bst.isBalanced());
 
-    res.send({ bst: { array, size, bst } });
-  } else
-    res
-      .status(400)
-      .json({ error: "All elements in the array must be integers." });
+    res.send({ response: { bst, size } });
+    return;
+  }
+  res
+    .status(400)
+    .json({ error: "All elements in the array must be integers." });
 };
 
 //GET '/bst/:name'
 const getOneBST = (req, res) => {
+  // console.log(bst.find(82));
+  // console.log(bst.isPresent(82));
+  // console.log(bst.findMinHeight());
+  // console.log(bst.findMaxHeight());
+  // console.log(bst.isBalanced());
+
   res.json({ message: "GET 1 BST" });
 };
 
