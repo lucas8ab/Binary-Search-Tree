@@ -5,10 +5,10 @@ const bstController = require("../controllers/bst-controller");
 //create BST
 bstRouter.post("/bst/new", bstController.createBST);
 
-//get one
-bstRouter.get("/bst/:id", bstController.getOneBST);
+//get deep
+bstRouter.get("/bst/deep", bstController.getDeepestAndDeep);
 
-//get all
-bstRouter.get("/bst", bstController.getAllBST);
+//get min
+bstRouter.get("/bst/min", bstController.findMinNode);
 
 module.exports = bstRouter;
