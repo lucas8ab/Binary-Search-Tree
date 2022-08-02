@@ -12,7 +12,7 @@ const checkArray = (array) => {
   return array;
 };
 
-//POST '/bst/:name'
+//POST '/bst/new'
 const createBST = (req, res) => {
   let check = req.body?.array ?? req;
   const bstArray = checkArray(check);
@@ -63,17 +63,39 @@ const findMaxNode = (req, res) => {
   res.json({ message: "Max node is: " + max });
 };
 
-//GET '/bst/max'
+//GET '/bst/find'
 const findNode = (req, res) => {
-  // console.log(bst.findMinHeight());
-  // console.log(bst.findMax());
+  const bst = createBST(req.body.array);
+  let node = bst.find(req.body.find);
+  console.log(node);
+
+  res.send({ node });
+};
+
+//GET '/bst/isPresent'
+const isPresent = (req, res) => {
+  const bst = createBST(req.body.array);
+  let exist = bst.isPresent(parseInt(req.query.find));
+
+  res.json({ message: "Node is: " + exist });
+};
+
+//DEL '/bst/remove'
+const remove = (req, res) => {
+  const bst = createBST(req.body.array);
+  bst.remove(req.body.remove);
+  console.log(bst);
+
+  res.send({ bst });
+};
+
+//GET '/bst/'
+const a = (req, res) => {
   // console.log(bst.isBalanced());
   // console.log(bst.inOrder());
   // console.log(bst.preOrder());
   // console.log(bst.postOrder());
   // console.log(bst.levelOrder());
-  // console.log(bst.find(82));
-  // console.log(bst.isPresent(82));
   res.json({ message: "GET all BST" });
 };
 
@@ -82,4 +104,7 @@ module.exports = {
   findMaxNode,
   getDeepestAndDeep,
   createBST,
+  findNode,
+  isPresent,
+  remove,
 };
