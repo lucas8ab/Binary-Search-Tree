@@ -11,4 +11,7 @@ bstRouter.get("/bst/deep", bstController.getDeepestAndDeep);
 //get min
 bstRouter.get("/bst/min", bstController.findMinNode);
 
+//get max
+bstRouter.get("/bst/max", bstController.findMaxNode);
+
 module.exports = bstRouter;

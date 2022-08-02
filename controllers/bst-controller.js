@@ -45,9 +45,26 @@ const getDeepestAndDeep = (req, res) => {
   res.json({ message: "Deepest Nodes: " + nodes + " and Deep: " + deep });
 };
 
-//GET '/bst'
-const findMinNode = (req, res, next) => {
-  // console.log(bst.findMin());
+//GET '/bst/min'
+const findMinNode = (req, res) => {
+  const bst = createBST(req.body.array);
+  let min = bst.findMin();
+  console.log(min);
+
+  res.json({ message: "Min node is: " + min });
+};
+
+//GET '/bst/max'
+const findMaxNode = (req, res) => {
+  const bst = createBST(req.body.array);
+  let max = bst.findMax();
+  console.log(max);
+
+  res.json({ message: "Max node is: " + max });
+};
+
+//GET '/bst/max'
+const findNode = (req, res) => {
   // console.log(bst.findMinHeight());
   // console.log(bst.findMax());
   // console.log(bst.isBalanced());
@@ -62,6 +79,7 @@ const findMinNode = (req, res, next) => {
 
 module.exports = {
   findMinNode,
+  findMaxNode,
   getDeepestAndDeep,
   createBST,
 };
