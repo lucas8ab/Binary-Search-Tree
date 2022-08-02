@@ -14,7 +14,8 @@ const checkArray = (array) => {
 
 //POST '/bst/:name'
 const createBST = (req, res) => {
-  const bstArray = checkArray(req.body.array);
+  let check = req.body?.array ?? req;
+  const bstArray = checkArray(check);
   const bst = new BST();
   let array = [];
 
@@ -23,36 +24,62 @@ const createBST = (req, res) => {
       bst.add(node);
       array.push(node);
     }
-    console.log(bst.findMin());
-    console.log(bst.findMax());
+
     let size = array.length;
 
-    res.send({ response: { bst, size } });
-    return;
+    if (res) res.send({ BST: { bst, size } });
+    else return bst;
   }
   res
     .status(400)
     .json({ error: "All elements in the array must be integers." });
 };
 
-//GET '/bst/:name'
-const getOneBST = (req, res) => {
-  // console.log(bst.find(82));
-  // console.log(bst.isPresent(82));
-  // console.log(bst.findMinHeight());
-  // console.log(bst.findMaxHeight());
-  // console.log(bst.isBalanced());
+//GET '/bst/deep'
+const getDeepestAndDeep = (req, res) => {
+  const bst = createBST(req.body.array);
+  let deep = bst.findMaxHeight();
+  console.log("Deep: " + deep);
+  let nodes = bst.printLeafNodes();
 
-  res.json({ message: "GET 1 BST" });
+  res.json({ message: "Deepest Nodes: " + nodes + " and Deep: " + deep });
 };
 
-//GET '/bst'
-const getAllBST = (req, res, next) => {
+//GET '/bst/min'
+const findMinNode = (req, res) => {
+  const bst = createBST(req.body.array);
+  let min = bst.findMin();
+  console.log(min);
+
+  res.json({ message: "Min node is: " + min });
+};
+
+//GET '/bst/max'
+const findMaxNode = (req, res) => {
+  const bst = createBST(req.body.array);
+  let max = bst.findMax();
+  console.log(max);
+
+  res.json({ message: "Max node is: " + max });
+};
+
+//GET '/bst/max'
+const findNode = (req, res) => {
+  // console.log(bst.findMinHeight());
+  // console.log(bst.findMax());
+  // console.log(bst.isBalanced());
+  // console.log(bst.inOrder());
+  // console.log(bst.preOrder());
+  // console.log(bst.postOrder());
+  // console.log(bst.levelOrder());
+  // console.log(bst.find(82));
+  // console.log(bst.isPresent(82));
   res.json({ message: "GET all BST" });
 };
 
 module.exports = {
-  getAllBST,
-  getOneBST,
+  findMinNode,
+  findMaxNode,
+  getDeepestAndDeep,
   createBST,
 };

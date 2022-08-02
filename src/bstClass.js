@@ -1,6 +1,5 @@
 /* eslint-disable no-inner-declarations */
 /* eslint-disable no-unused-vars */
-/* Binary Search Tree */
 
 class Node {
   constructor(data, left = null, right = null) {
@@ -221,6 +220,28 @@ class BST {
     } else {
       return null;
     }
+  }
+
+  // Function to print leaf nodes from left to right
+  printLeafNodes(root = this.root) {
+    let deepNodes = [];
+    // If node is null, return
+    if (root == null) return;
+
+    // If node is leaf node, print its data
+    if (root.left == null && root.right == null) {
+      console.log(root.data + " deepest node ");
+      deepNodes.push(root.data);
+      return;
+    }
+
+    // If left child exists, check for leaf recursively
+    if (root.left != null) this.printLeafNodes(root.left);
+
+    // If right child exists, check for leaf recursively
+    if (root.right != null) this.printLeafNodes(root.right);
+
+    return deepNodes;
   }
 }
 
