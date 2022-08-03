@@ -89,12 +89,43 @@ const remove = (req, res) => {
   res.send({ bst });
 };
 
-//GET '/bst/'
-const a = (req, res) => {
-  // console.log(bst.isBalanced());
-  // console.log(bst.inOrder());
-  // console.log(bst.preOrder());
-  // console.log(bst.postOrder());
+//GET '/bst/balanced'
+const isBalanced = (req, res) => {
+  const bst = createBST(req.body.array);
+  let balanced = bst.isBalanced();
+
+  res.json({ message: "BST balanced is: " + balanced });
+};
+
+//GET '/bst/inOrder'
+const inOrder = (req, res) => {
+  const bst = createBST(req.body.array);
+  let inOrderBST = bst.inOrder();
+  console.log(inOrderBST);
+
+  res.json({ message: "BST in order: " + inOrderBST });
+};
+
+//GET '/bst/preOrder'
+const preOrder = (req, res) => {
+  const bst = createBST(req.body.array);
+  let preOrderBST = bst.preOrder();
+  console.log(preOrderBST);
+
+  res.json({ message: "BST pre order: " + preOrderBST });
+};
+
+//GET '/bst/postOrder'
+const postOrder = (req, res) => {
+  const bst = createBST(req.body.array);
+  let postOrderBST = bst.postOrder();
+  console.log(postOrderBST);
+
+  res.json({ message: "BST post order: " + postOrderBST });
+};
+
+//GET '/bst/levelOrder'
+const levelOrder = (req, res) => {
   // console.log(bst.levelOrder());
   res.json({ message: "GET all BST" });
 };
@@ -107,4 +138,8 @@ module.exports = {
   findNode,
   isPresent,
   remove,
+  isBalanced,
+  inOrder,
+  preOrder,
+  postOrder,
 };

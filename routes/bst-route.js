@@ -23,4 +23,16 @@ bstRouter.get("/bst/isPresent", bstController.isPresent);
 //remove node
 bstRouter.delete("/bst/remove", bstController.remove);
 
+//balanced tree
+bstRouter.get("/bst/balanced", bstController.isBalanced);
+
+//inOrder
+bstRouter.get("/bst/inOrder", bstController.inOrder);
+
+//preOrder
+bstRouter.get("/bst/preOrder", bstController.preOrder);
+
+//postOrder
+bstRouter.get("/bst/postOrder", bstController.postOrder);
+
 module.exports = bstRouter;
