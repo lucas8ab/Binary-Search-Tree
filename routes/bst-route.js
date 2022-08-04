@@ -35,4 +35,7 @@ bstRouter.get("/bst/preOrder", bstController.preOrder);
 //postOrder
 bstRouter.get("/bst/postOrder", bstController.postOrder);
 
+//levelOrder
+bstRouter.get("/bst/levelOrder", bstController.levelOrder);
+
 module.exports = bstRouter;
