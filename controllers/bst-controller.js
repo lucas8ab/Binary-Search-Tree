@@ -126,8 +126,11 @@ const postOrder = (req, res) => {
 
 //GET '/bst/levelOrder'
 const levelOrder = (req, res) => {
-  // console.log(bst.levelOrder());
-  res.json({ message: "GET all BST" });
+  const bst = createBST(req.body.array);
+  let levelOrderBST = bst.levelOrder();
+  console.log(levelOrderBST);
+
+  res.json({ message: "BST level order: " + levelOrderBST });
 };
 
 module.exports = {
@@ -142,4 +145,5 @@ module.exports = {
   inOrder,
   preOrder,
   postOrder,
+  levelOrder,
 };
