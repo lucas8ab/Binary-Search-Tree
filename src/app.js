@@ -15,7 +15,7 @@ app.use("/", routes);
 
 app.get("/", function (req, res) {
   res.status(200).send({
-    message: "GET Home route working fine!",
+    message: "GET: Home route working!",
   });
 });
 
